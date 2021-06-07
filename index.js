@@ -26,13 +26,14 @@ client.connect(err => {
 
   ////For Add Product
   app.post('/addProduct', (req, res) => {
-    const course = req.body;
-    productsCollection.insertOne(course)
+    const product = req.body;
+    productsCollection.insertOne(product)
       .then(result => {
         console.log(result.insertedCount);
         res.send(result.insertedCount)
       })
   })
+
 
   app.get('/products', (req, res) => {
     productsCollection.find({})
@@ -64,23 +65,23 @@ client.connect(err => {
 
 
 
-app.post('/addOrder',(req,res)=>{
-  const transportall=req.body;
-  ordersCollection.insertOne(transportall)
-  .then(result =>{
-      console.log(result.insertedCount);
-      res.send(result.insertedCount)
+  app.post('/addOrder', (req, res) => {
+    const transportall = req.body;
+    ordersCollection.insertOne(transportall)
+      .then(result => {
+        console.log(result.insertedCount);
+        res.send(result.insertedCount)
+      })
   })
-})
 
-app.get('/allOrder',(req,res)=>{
-  ordersCollection.find({})
- .toArray((err,documents)=>{
-     res.send(documents)
- })
-})
+  app.get('/allOrder', (req, res) => {
+    ordersCollection.find({})
+      .toArray((err, documents) => {
+        res.send(documents)
+      })
+  })
 
-
+ 
 
 
 
